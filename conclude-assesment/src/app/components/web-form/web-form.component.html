@@ -1,0 +1,148 @@
+<mat-card class="form-card">
+  <form
+    class="web-form"
+    #ngForm="ngForm"
+    [formGroup]="webForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="errorHandling('name', 'required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="surname" />
+            <mat-error *ngIf="errorHandling('surname', 'required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-error
+              *ngIf="
+                errorHandling('email', 'email') &&
+                !errorHandling('email', 'required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="errorHandling('email', 'required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>ID Number</mat-label>
+            <input matInput formControlName="idNum" maxlength="13" #idNUmber />
+            <mat-error *ngIf="errorHandling('idNum', 'required')">
+              ID <strong>required</strong>
+            </mat-error>
+            <mat-hint align="end">{{ idNUmber.value.length }} / 13</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table class="full-width" cellspacing="0">
+      <td>
+        <mat-form-field class="full-width">
+          <mat-label>Address 1</mat-label>
+          <textarea matInput formControlName="address1"></textarea>
+          <mat-error *ngIf="errorHandling('address1', 'required')">
+            Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="full-width">
+          <mat-label>Address 2</mat-label>
+          <textarea matInput formControlName="address2"></textarea>
+          <mat-error *ngIf="errorHandling('address2', 'required')">
+            Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </table>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" />
+            <mat-error *ngIf="errorHandling('city', 'required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Province</mat-label>
+            <input matInput formControlName="province" />
+            <mat-error *ngIf="errorHandling('province', 'required')">
+              Province is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" />
+            <mat-error *ngIf="errorHandling('country', 'required')">
+              Country is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label>Postal Code</mat-label>
+            <input
+              matInput
+              formControlName="postal"
+              #postalCode
+              maxlength="5"
+            />
+            <mat-error *ngIf="errorHandling('postal', 'required')">
+              Postal code is <strong>required</strong>
+            </mat-error>
+            <mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <section>
+      <div class="button-row">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+        <button type="reset" class="clear-btn" mat-raised-button color="accent">
+          Clear
+        </button>
+      </div>
+    </section>
+  </form>
+</mat-card>
+<br>
+<a mat-raised-button (click)=(goToUsers())>Check Users</a>
