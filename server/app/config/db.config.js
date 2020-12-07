@@ -42,7 +42,7 @@ let db = new sqlite3.Database(DB_SOURCE, sqlite3.OPEN_READWRITE | sqlite3.OPEN_C
           console.log('appusers table already exists')
         } else {
           var insert = 'INSERT INTO appusers (name, email, password) VALUES (?,?,?)'
-          db.run(insert, ["admin","admin@example.com",bcrypt.hashSync("password")])
+          db.run(insert, ["admin","admin@example.com",bcrypt.hashSync("password123")])
         } 
       });
   }
